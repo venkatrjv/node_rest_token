@@ -22,7 +22,7 @@ router.post('/', function (req, res) {
         User.addUser(req.body, function (err, rows) {
             if (err) return res.status(500).send("There was a problem adding the information to the database.");
             res.status(200).send({
-                message: 'Person saved successfully!'
+                message: 'User saved successfully!'
             });
         });
     } catch (error) {
@@ -36,8 +36,7 @@ router.get('/', function (req, res) {
     try {
         User.getAllUser(function (err, rows) {
             if (err) {
-                // res.status(500).json(err)
-                return next(err);
+                return res.status(500).json("Error while retrieving data from database")
             } else {
                 return res.json(rows)
             }
